@@ -1,0 +1,12 @@
+module Hometurf
+  class Locations
+    attr_reader files: Pathname
+
+    attr_reader home: Pathname
+
+    def initialize: (files: Pathname, home: Pathname) -> void
+    def home_directory: -> String
+
+    def home_files_directory: -> String
+  end
+end

@@ -1,0 +1,9 @@
+module Hometurf
+  class Sync
+    def create_links: -> nil
+
+    def from: -> untyped
+
+    def to: -> untyped
+  end
+end

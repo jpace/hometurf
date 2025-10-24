@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+if (x = __dir__)
+  $:.unshift File.expand_path("../lib", x)
+end
+puts "$: #{$:}"
+require "hometurf/app"
+
+puts "hometurf, hello"
+
+app = Hometurf::App.new
+ARGV.each do |arg|
+  puts "arg: #{arg}"
+  case arg
+  when "update_links", "update"
+    app.update_links
+  when "suggest_links", "suggest"
+    app.suggest_links
+  end
+end

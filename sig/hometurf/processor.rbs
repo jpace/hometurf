@@ -1,0 +1,6 @@
+module Hometurf
+  class Processor
+    attr_reader filesdir: Pathname
+    attr_reader homedir: Pathname
+  end
+end

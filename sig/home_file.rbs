@@ -1,0 +1,7 @@
+class HomeFile
+  @link: nil | String
+  @name: String
+  @path: String | nil
+
+  def path: -> Pathname
+end
