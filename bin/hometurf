@@ -7,15 +7,27 @@ end
 puts "$: #{$:}"
 require "hometurf/app"
 
-puts "hometurf, hello"
+puts "ARGV: #{ARGV}"
+puts "Locations: #{Hometurf::Locations}"
+puts "Project directory: #{ENV[Hometurf::Locations::PROJECT_DIR_ENVNAME]}"
+puts "Home directory: #{ENV[Hometurf::Locations::HOME_DIR_ENVNAME]}"
 
 app = Hometurf::App.new
-ARGV.each do |arg|
+index = 0
+while index < ARGV.length
+  arg = ARGV[index]
   puts "arg: #{arg}"
   case arg
-  when "update_links", "update"
-    app.update_links
-  when "suggest_links", "suggest"
-    app.suggest_links
+  when "add-link"
+    app.add_link ARGV[index + 1]
+    index += 1
+  when "set-link"
+    app.add_link ARGV[index + 1]
+    index += 1
+  when "status"
+    app.status
+  else
+    $stderr.puts "unknown command: #{arg}"
   end
+  index += 1
 end

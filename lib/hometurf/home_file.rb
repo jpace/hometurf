@@ -1,23 +1,22 @@
 # frozen_string_literal: true
 
-require 'hometurf/locations'
+module Hometurf
+  class HomeFile
+    attr_reader :file
+    attr_reader :link
 
-class HomeFile
-  def initialize name
-    @name = name
-  end
+    def initialize(file)
+      @file = file
+      if file.symlink?
+        # what if it's a link to a link to a link ...?
+        @link = file.readlink
+      else
+        @link = nil
+      end
+    end
 
-  def project_file
-    @project_file ||= begin
-                        project_dir = Hometurf::Locations.new.home_files_directory
-                        Pathname.new(project_dir) + @name
-                      end
-  end
-
-  def home_file
-    @home_file ||= begin
-                     homedir = ENV["HOME"]
-                     Pathname.new(homedir) + @link
-                   end
+    def to_s
+      "file: #{@file}, link: #{@link}"
+    end
   end
 end

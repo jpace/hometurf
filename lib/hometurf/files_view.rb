@@ -1,28 +1,28 @@
-require 'hometurf/statuses'
+require 'hometurf/files'
 
 module Hometurf
-  class StatusView
-    def initialize statuses
-      @statuses = statuses
+  class FilesView
+    def initialize files
+      @files = files
     end
 
     def render
-      projfiles = @statuses.project_files
+      projfiles = @files.project_files
       projfiles.each do |file|
         puts "file: #{file}"
       end
 
-      homefiles = @statuses.home_files
+      homefiles = @files.home_files
       homefiles.each do |status|
-        puts "status: #{status.homefile}"
+        puts "status: #{status.file}"
       end
 
-      basenames = projfiles.map(&:basename) | homefiles.map(&:homefile).map(&:basename)
+      basenames = projfiles.map(&:basename) | homefiles.map(&:file).map(&:basename)
       basenames.sort.each do |bn|
-        homefile = homefiles.find { |x| x.homefile.basename == bn }
+        file = homefiles.find { |x| x.file.basename == bn }
         projfile = projfiles.find { |x| x.basename == bn }
-        if homefile
-          show_status_short homefile
+        if file
+          show_status_short file
         else
           show_projfile_status_short projfile
         end
@@ -33,7 +33,7 @@ module Hometurf
       width = 40
       rhs = if status.link
               formatted = format_file(status.link)
-              if @statuses.linked_to_homefiles? status
+              if @files.linked_to_homefiles? status
                 "&> #{formatted}"
               else
                 "!> #{formatted}"
@@ -42,7 +42,7 @@ module Hometurf
               "?>"
             end
       width = width - 4
-      lhs = format "%-#{width}.#{width}s (%1s)", status.homefile, file_type_string(status.homefile)
+      lhs = format "%-#{width}.#{width}s (%1s)", status.file, file_type_string(status.file)
       printf "%s %s\n", lhs, rhs
     end
 

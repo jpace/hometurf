@@ -5,7 +5,7 @@ module Hometurf
   class Processor
     attr_reader :homedir, :filesdir
 
-    def initialize(locations: Locations.new)
+    def initialize(locations)
       @homedir = Pathname.new locations.home
       @filesdir = Pathname.new locations.files
     end

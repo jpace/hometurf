@@ -1,7 +1,7 @@
 require 'hometurf/locations'
 require 'hometurf/home_file'
-require 'hometurf/statuses'
-require 'hometurf/status_view'
+require 'hometurf/files'
+require 'hometurf/files_view'
 
 module Hometurf
   class App
@@ -9,13 +9,15 @@ module Hometurf
       puts "this is app"
     end
 
-    def update_links
+    def add_link file
+      puts "add link: #{file}"
     end
 
-    def suggest_links
-      puts "suggest links"
-      statuses = Statuses.new(locations: Locations.new(files: Pathname("/tmp/ht-test/proj/homefiles"), home: Pathname("/tmp/ht-test/proj/home")))
-      view = StatusView.new(statuses)
+    def status
+      puts "status"
+      locations = Locations.new(files: Pathname("/tmp/ht-test/proj/homefiles"), home: Pathname("/tmp/ht-test/proj/home"))
+      statuses = Files.new locations
+      view = FilesView.new statuses
       view.render
     end
   end
