@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3d7156e-c2b8-4675-82db-fc3441feb345" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/file_utils.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/files.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/hometurf/test_files_utils.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/hometurf/test_fixture_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hometurf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hometurf.iml" afterDir="false" />
+    <list default="true" id="c3d7156e-c2b8-4675-82db-fc3441feb345" name="Changes" comment="Add home and project functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/hometurf" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hometurf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/app.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/app.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/home_file.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home_file.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/home_files.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/home_links.rb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hometurf/locations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/locations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/processor.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/processor.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/status_view.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/files_view.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/statuses.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/hometurf/statuses_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/files_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/hometurf_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_helper.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,10 +394,23 @@
       <workItem from="1761255083023" duration="221000" />
       <workItem from="1761255589901" duration="8026000" />
     </task>
+    <task id="LOCAL-00001" summary="Add home and project functionality">
+      <option name="closed" value="true" />
+      <created>1761494260960</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761494260960</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add home and project functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add home and project functionality" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

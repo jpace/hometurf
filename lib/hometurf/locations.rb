@@ -7,7 +7,7 @@ module Hometurf
     PROJECT_DIR_ENVNAME = "HOMETURF_FILES_DIRECTORY"
     HOME_DIR_ENVNAME = "HOME_NOT_REALLY"
 
-    def initialize(files: PROJECT_DIR_ENVNAME, home: HOME_DIR_ENVNAME)
+    def initialize(files: Pathname.new(ENV[PROJECT_DIR_ENVNAME]), home: Pathname.new(ENV[HOME_DIR_ENVNAME]))
       @files = Pathname.new files
       @home = Pathname.new home
     end
