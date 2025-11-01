@@ -4,25 +4,28 @@
 if (x = __dir__)
   $:.unshift File.expand_path("../lib", x)
 end
-puts "$: #{$:}"
 require "hometurf/app"
 
 puts "ARGV: #{ARGV}"
-puts "Locations: #{Hometurf::Locations}"
 puts "Project directory: #{ENV[Hometurf::Locations::PROJECT_DIR_ENVNAME]}"
 puts "Home directory: #{ENV[Hometurf::Locations::HOME_DIR_ENVNAME]}"
 
-app = Hometurf::App.new
+locations = Hometurf::Locations.new
+puts "locations: #{locations}"
+
+app = Hometurf::App.new locations
 index = 0
 while index < ARGV.length
   arg = ARGV[index]
   puts "arg: #{arg}"
   case arg
+  when "update"
+    app.update
   when "add-link"
     app.add_link ARGV[index + 1]
     index += 1
   when "set-link"
-    app.add_link ARGV[index + 1]
+    app.set_link ARGV[index + 1]
     index += 1
   when "status"
     app.status

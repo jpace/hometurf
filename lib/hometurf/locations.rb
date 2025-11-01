@@ -11,5 +11,9 @@ module Hometurf
       @files = Pathname.new files
       @home = Pathname.new home
     end
+
+    def to_s
+      "files: #{@files}, home: #{@home}"
+    end
   end
 end

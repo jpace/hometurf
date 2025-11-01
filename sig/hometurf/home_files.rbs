@@ -1,5 +1,0 @@
-module Hometurf
-  class HomeFiles
-    def suggest_links: -> untyped
-  end
-end

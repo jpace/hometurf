@@ -3,88 +3,26 @@
 require 'hometurf/files'
 require_relative '../test_helper'
 require_relative '../hometurf/test_fixture'
-require_relative '../utils/println'
+require_relative '../../lib/hometurf/utils/println'
 
 module Hometurf
   class TestFixtureTest < Test::Unit::TestCase
     include Println
 
-    class << self
-      def startup
-        puts "startup"
-        @@fixture = TestFixture.new
-        @@fixture.create_test_environment
-      end
-
-      def shutdown
-        puts "shutdown"
-      end
-    end
-
-    def fixture
-      @@fixture
-    end
-
     test "init" do
       ENV["HOMETURF_FILES_DIRECTORY"] = "/tmp/hometurf"
       locations = Locations.new(files: Pathname.new("/tmp/home-test/proj/projfiles"), home: Pathname.new("/tmp/home-test"))
       obj = Files.new locations
-      assert_equal(Pathname.new("/tmp/home-test/proj/projfiles"), obj.filesdir)
-      assert_equal(Pathname.new("/tmp/home-test"), obj.homedir)
-    end
-
-    def show_status_short(statuses, status)
-      width = 40
-      rhs = if status.link
-              formatted = format_file(status.link)
-              if statuses.linked_to_homefiles? status
-                "&> #{formatted}"
-              else
-                "!> #{formatted}"
-              end
-            else
-              "?>"
-            end
-      width = width - 4
-      lhs = format "%-#{width}.#{width}s (%1s)", status.file, file_type_string(status.file)
-      printf "%s %s\n", lhs, rhs
-    end
-
-    def file_type_string(file)
-      if file.file?
-        "."
-      elsif file.directory?
-        "/"
-      elsif file.symlink?
-        "+"
-      end
-    end
-
-    def format_file(file)
-      type = if file.file?
-               "."
-             elsif file.directory?
-               "/"
-             elsif file.symlink?
-               "+"
-             end
-      "#{file} (#{type})"
-    end
-
-    def show_projfile_status_short(projfile)
-      print_line "", format_file(projfile)
-    end
-
-    def print_line lhs, rhs
-      width = 40
-      printf "%-#{width}.#{width}s -> %s\n", lhs, rhs
+      assert_equal(Pathname.new("/tmp/home-test/proj/projfiles"), obj.project.dir)
+      assert_equal(Pathname.new("/tmp/home-test"), obj.home.dir)
     end
 
     test "status in home" do
-      locations = Hometurf::Locations.new(files: fixture.project_dir, home: fixture.home_dir)
+      fixture = TestFixture.new
+      locations = fixture.locations
 
-      obj = Hometurf::Files.new(locations)
-      homefiles = obj.home_files.sort_by(&:file)
+      files = Hometurf::Files.new(locations)
+      homefiles = files.home.elements.sort_by(&:file)
 
       a = homefiles[0]
       assert_equal fixture.home_dir + ".a-not-linked", a.file
@@ -115,12 +53,10 @@ module Hometurf
 
     test "status in projfiles" do
       fixture = TestFixture.new
-      fixture.create_test_environment
-
-      locations = Hometurf::Locations.new(files: fixture.project_dir, home: fixture.home_dir)
-      obj = Hometurf::Files.new locations
-      projfiles = obj.project_files.sort
-      homefiles = obj.home_files.sort_by(&:file)
+      locations = fixture.locations
+      files = Hometurf::Files.new locations
+      projfiles = files.project.elements.sort
+      homefiles = files.home.elements.sort_by(&:file)
 
       b = projfiles[0]
       assert_equal fixture.project_dir + ".b-linked", b

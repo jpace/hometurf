@@ -8,8 +8,7 @@ module Hometurf
     def initialize(file)
       @file = file
       if file.symlink?
-        # what if it's a link to a link to a link ...?
-        @link = file.readlink
+        @link = file.realpath
       else
         @link = nil
       end
