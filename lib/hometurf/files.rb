@@ -16,10 +16,6 @@ module Hometurf
       @project = ProjectFiles.new locations.files
     end
 
-    def linked_to_project?(link)
-      @project.under_directory? link
-    end
-
     def copy_to_project fd, dest
       pn = Pathname.new fd
       raise "project directory exists: #{dest}" if dest.exist?

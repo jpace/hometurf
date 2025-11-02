@@ -5,28 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3d7156e-c2b8-4675-82db-fc3441feb345" name="Changes" comment="Initialize locations">
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/home.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/location.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/project.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view_brief.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hometurf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hometurf.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hometurf/check.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view_colors.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/hometurf" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hometurf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hometurf/app.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/app.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/file_utils.rb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hometurf/files.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/files.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/files_view.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/home_file.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home_file.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/locations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/locations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/processor.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sig/hometurf/home_files.rbs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/home.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/project.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/project.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/view/files_view_brief.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view_brief.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/hometurf/files_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/files_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/hometurf/locations_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/locations_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/hometurf/test_fixture_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/test_fixture_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/println.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/utils/println.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +85,7 @@
     "Test::Unit/Shoulda/Minitest.test_fixture_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test_foobar.executor": "Run",
     "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1762022872948",
-    "git-widget-placeholder": "add-status-command",
+    "git-widget-placeholder": "add-add-subcommand",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jpace/Projects/org/incava/hometurf/lib/hometurf/view",
@@ -103,7 +94,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "ruby.structure.view.model.defaults.configured": "true",
@@ -155,7 +146,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="CUSTOM_SET_OF_FILES" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />

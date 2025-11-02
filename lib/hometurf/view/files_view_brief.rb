@@ -20,8 +20,9 @@ module Hometurf
     end
 
     def print_line lhs, rhs
-      width = 40
-      printf "%-#{width}.#{width}s -> %s\n", lhs, rhs
+      width = 50
+      dots = "." * (width - lhs.to_s.length - 3)
+      printf "%s #{dots} %s\n", lhs, rhs
     end
   end
 end

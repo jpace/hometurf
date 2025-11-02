@@ -25,29 +25,29 @@ module Hometurf
       homefiles = files.home.elements.sort_by(&:file)
 
       a = homefiles[0]
-      assert_equal fixture.home_dir + ".a-not-linked", a.file
+      assert_equal fixture.home.directory + ".a-not-linked", a.file
       assert_nil a.link
 
       b = homefiles[1]
-      assert_equal fixture.home_dir + ".b-linked", b.file
+      assert_equal fixture.home.directory + ".b-linked", b.file
       assert_not_nil b.link
 
       c = homefiles[2]
-      assert_equal fixture.home_dir + ".c-linked", c.file
-      assert_equal fixture.elsewhere_dir + ".c-linked", c.link
+      assert_equal fixture.home.directory + ".c-linked", c.file
+      assert_equal fixture.elsewhere.directory + ".c-linked", c.link
 
       f = homefiles[3]
-      assert_equal fixture.home_dir + ".f-linked", f.file
+      assert_equal fixture.home.directory + ".f-linked", f.file
       assert_not_nil f.link
-      assert_equal fixture.project_dir + ".f-linked", f.link
+      assert_equal fixture.project.directory + ".f-linked", f.link
 
       h = homefiles[4]
-      assert_equal fixture.home_dir + ".h", h.file
+      assert_equal fixture.home.directory + ".h", h.file
       assert_not_nil h.link
-      assert_equal fixture.elsewhere_dir + ".h", h.link
+      assert_equal fixture.elsewhere.directory + ".h", h.link
 
       i = homefiles[5]
-      assert_equal fixture.home_dir + ".i", i.file
+      assert_equal fixture.home.directory + ".i", i.file
       assert_nil i.link
     end
 
@@ -59,30 +59,36 @@ module Hometurf
       homefiles = files.home.elements.sort_by(&:file)
 
       b = projfiles[0]
-      assert_equal fixture.project_dir + ".b-linked", b
+      assert_equal fixture.project.directory + ".b-linked", b
       bh = homefiles.find { |x| x.link == b }
       assert_not_nil bh
-      assert_equal fixture.home_dir + ".b-linked", bh&.file
+      assert_equal fixture.home.directory + ".b-linked", bh&.file
 
       d = projfiles[1]
       assert d.file?
-      assert_equal fixture.project_dir + ".d-not-linked", d
+      assert_equal fixture.project.directory + ".d-not-linked", d
       dh = homefiles.find { |x| x.link == d }
       assert_nil dh
 
       f = projfiles[2]
-      assert_equal fixture.project_dir + ".f-linked", f
+      assert_equal fixture.project.directory + ".f-linked", f
       fh = homefiles.find { |x| x.link == f }
       assert_not_nil fh
 
-      j = projfiles[3]
+      git = projfiles[3]
+      assert git.directory?
+      assert_equal fixture.project.directory + ".git", git
+      gith = homefiles.find { |x| x.link == git }
+      assert_nil gith
+
+      j = projfiles[4]
       assert j.directory?
-      assert_equal fixture.project_dir + ".j-not-linked", j
+      assert_equal fixture.project.directory + ".j-not-linked", j
       jh = homefiles.find { |x| x.link == j }
       assert_nil jh
 
-      e = projfiles[4]
-      assert_equal fixture.project_dir + "dot.e-not-linked", e
+      e = projfiles[5]
+      assert_equal fixture.project.directory + "dot.e-not-linked", e
       assert e.file?
       eh = homefiles.find { |x| x.link == e }
       assert_nil eh

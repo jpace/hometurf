@@ -6,7 +6,7 @@ require_relative '../test_helper'
 require_relative '../hometurf/test_fixture'
 
 module Hometurf
-  class FixtureInstance < TestFixture
+  class FixtureSingleton < TestFixture
     include Singleton
   end
 
@@ -14,30 +14,30 @@ module Hometurf
     include Println
 
     def fixture
-      FixtureInstance.instance
+      FixtureSingleton.instance
     end
 
     test "add, link does not exist" do
-      k_file = fixture.create_project_file ".k"
+      k_file = fixture.project.create_file ".k"
       locations = fixture.locations
       files = Files.new locations
       files.add_link k_file
-      k_link = fixture.home_dir + ".k"
+      k_link = fixture.home.directory + ".k"
       assert k_link.exist?
       assert_equal k_file, k_link.realpath
     end
 
     test "add, link exists" do
-      ell = fixture.create_project_file ".l"
-      fixture.add_home_link ell
-      projfile = fixture.project_dir + ".l"
+      ell = fixture.project.create_file ".l"
+      fixture.home.create_link ell
+      projfile = fixture.project.directory + ".l"
       locations = fixture.locations
       files = Files.new locations
       assert_raise(RuntimeError) { files.add_link projfile }
     end
 
     test "convert home to project" do
-      fixture.create_home_file ".m"
+      fixture.home.create_file ".m"
       locations = fixture.locations
       homefile = locations.home + ".m"
       files = Files.new locations
@@ -49,8 +49,8 @@ module Hometurf
     end
 
     test "convert home to project, already exists" do
-      fixture.create_home_file ".n"
-      fixture.create_project_file ".n"
+      fixture.home.create_file ".n"
+      fixture.project.create_file ".n"
       locations = fixture.locations
       file = locations.home + ".n"
       files = Files.new locations
@@ -59,9 +59,9 @@ module Hometurf
     end
 
     test "add link, home file exists, project file exists" do
-      fixture.create_home_file ".p"
-      fixture.create_project_file ".p"
-      projfile = fixture.project_dir + ".p"
+      fixture.home.create_file ".p"
+      fixture.project.create_file ".p"
+      projfile = fixture.project.directory + ".p"
       locations = fixture.locations
       files = Files.new locations
       assert_raise(RuntimeError) { files.add_link projfile }

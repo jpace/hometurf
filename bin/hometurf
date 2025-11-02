@@ -14,23 +14,36 @@ locations = Hometurf::Locations.new
 puts "locations: #{locations}"
 
 app = Hometurf::App.new locations
+args = ARGV.dup
 index = 0
-while index < ARGV.length
-  arg = ARGV[index]
+while (arg = args.shift)
   puts "arg: #{arg}"
   case arg
   when "update"
+    # updates the home directory
     app.update
   when "add-link"
-    app.add_link ARGV[index + 1]
+    pn = Pathname.new args.shift
+    app.add_link pn
     index += 1
+  when "add-home-link"
+    # adds a link in ~, from the project directory
+    projfile = Pathname.new args.shift
+    puts "projfile: #{projfile}"
+    index += 1
+    link = if (name = args.shift)
+             Pathname.new name
+           end
+    puts "link: #{link}"
+    app.add_home_link projfile, link
   when "set-link"
-    app.set_link ARGV[index + 1]
+    pn = Pathname.new args.shift
+    app.set_link pn
     index += 1
   when "status"
+    # shows the status of the home and project directories
     app.status
   else
     $stderr.puts "unknown command: #{arg}"
   end
-  index += 1
 end
