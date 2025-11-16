@@ -5,7 +5,7 @@ module Hometurf
     attr_reader :file
     attr_reader :link
 
-    def initialize(file)
+    def initialize file
       @file = file
       if file.symlink?
         @link = file.realpath

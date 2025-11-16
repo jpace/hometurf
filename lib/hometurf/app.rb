@@ -21,7 +21,7 @@ module Hometurf
       files = Files.new @locations
       if file.parent == files.home.dir
         println "home"
-      elsif file.parent == files.project.dir
+      elsif file.parent == files.away.dir
         println "project"
       else
         println "elsewhere"
@@ -33,7 +33,7 @@ module Hometurf
       println "projfile", projfile
       println "projfile.parent", projfile.parent
       files = Files.new @locations
-      if projfile.parent == files.project.dir
+      if projfile.parent == files.away.dir
         println "project"
         files.home.add_link projfile, homefile
       else
@@ -55,15 +55,25 @@ module Hometurf
     def update
       puts "update"
       files = Files.new @locations
-      files.project.dir.each_child do |file|
-        if files.project.ignored? file
-          println "ignored", file
-        elsif files.home.element(file.basename).exist?
-          println "home exists", file
-        else
-          files.home.add_link file
-        end
-      end
+      files.update_home_from_project
+    end
+
+    def update_file file
+      puts "update file: #{file}"
+      files = Files.new @locations
+      files.update_home_from_project_file file
+    end
+
+    def copy_to_project file
+      puts "copy to project: #{file}"
+      files = Files.new @locations
+      files.copy_to_project file, files.away.element(file.basename)
+    end
+
+    def move_to_project file
+      puts "move to project: #{file}"
+      files = Files.new @locations
+      files.move_and_link file
     end
   end
 end

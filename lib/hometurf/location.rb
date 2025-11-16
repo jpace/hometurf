@@ -1,11 +1,17 @@
 require 'pathname'
+require 'hometurf/ignore_file'
 
 module Hometurf
   class Location
     attr_reader :dir
 
-    def initialize dir
+    def initialize dir, ignore_patterns
       @dir = dir
+      @ignore_file = IgnoreFile.new ignore_patterns
+    end
+
+    def ignored? file
+      @ignore_file.ignored? file
     end
 
     def element pn
@@ -19,11 +25,8 @@ module Hometurf
     def under_directory? file
       path = file.expand_path
       until path.root?
-        if path == dir
-          return true
-        else
-          path = path.parent
-        end
+        return true if path == dir
+        path = path.parent
       end
       false
     end

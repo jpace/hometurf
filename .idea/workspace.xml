@@ -5,13 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3d7156e-c2b8-4675-82db-fc3441feb345" name="Changes" comment="Initialize locations">
-      <change afterPath="$PROJECT_DIR$/lib/hometurf/view/color_string.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/hometurf/view/color_string_trial.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hometurf/exec/executor.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hometurf/ignore_file.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/hometurf/home_files_test.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/hometurf/ignore_file_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/hometurf/home.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/hometurf" beforeDir="false" afterPath="$PROJECT_DIR$/bin/hometurf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/app.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/app.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/check.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/files.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/files.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/home.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home_files.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/home_file.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/home_file.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/location.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/location.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/project.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/away_files.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/view/files_view.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/hometurf/view/files_view_brief.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view_brief.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/hometurf/view/files_view_colors.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/hometurf/view/files_view_colors.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hometurf/files_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/files_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/test_fixture.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hometurf/test_fixture_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/hometurf/test_fixture_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,14 +67,17 @@
     "Test::Unit/Shoulda/Minitest.color_string_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.files_test.rb (1).executor": "Run",
     "Test::Unit/Shoulda/Minitest.files_test.rb.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.home_files_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.hometurf_test.rb (1).executor": "Run",
     "Test::Unit/Shoulda/Minitest.hometurf_test.rb.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.ignore_file_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.links_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.locations_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.statuses_test.rb (1).executor": "Run",
     "Test::Unit/Shoulda/Minitest.statuses_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.suggest_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: add link (1).executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test: add link, home file exists, project file exists.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: add link.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: add new link.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: add, link does not exist.executor": "Run",
@@ -81,10 +96,15 @@
     "Test::Unit/Shoulda/Minitest.test: status in homefiles.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: status in projfiles.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test: status.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test: update single home link, ignored.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test_fixture_test.rb.executor": "Run",
     "Test::Unit/Shoulda/Minitest.test_foobar.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test_ignored (1).executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test_ignored.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test_ignored?.executor": "Run",
+    "Test::Unit/Shoulda/Minitest.test_nothing.executor": "Run",
     "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1762705330502",
-    "git-widget-placeholder": "refine-status-colors",
+    "git-widget-placeholder": "add-sync",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jpace/Projects/org/incava/awayturf",
@@ -122,48 +142,8 @@
       <command value="rake clean test" />
     </option>
   </component>
-  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.test: foreground color">
-    <configuration name="color_string_trial" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
-      <module name="hometurf" />
-      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
-      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
-      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_trial.rb" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="foo" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
-      <module name="hometurf" />
-      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
-      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
-      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/foo.rb" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="color_string_test.rb" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.files_test.rb">
+    <configuration name="files_test.rb" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="hometurf" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Ilib -Itest" />
@@ -182,8 +162,8 @@
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
@@ -195,7 +175,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test: all colors" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="test: add link, home file exists, project file exists" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="hometurf" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Ilib -Itest" />
@@ -214,10 +194,10 @@
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test: all colors$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test: add link, home file exists, project file exists$" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
@@ -227,7 +207,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test: foreground color" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+    <configuration name="test: update single home link, ignored" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="hometurf" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Ilib -Itest" />
@@ -246,10 +226,74 @@
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/view/color_string_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/files_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test: foreground color$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test: update single home link, ignored$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_ignored (1)" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+      <module name="hometurf" />
+      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Ilib -Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/ignore_file_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/ignore_file_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test_ignored$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test_ignored" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
+      <module name="hometurf" />
+      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Ilib -Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/hometurf/home_files_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPTS_PATHS" VALUE="$PROJECT_DIR$/test/hometurf/home_files_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="^test_ignored$" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
@@ -261,11 +305,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test: foreground color" />
-        <item itemvalue="Ruby.color_string_trial" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.color_string_test.rb" />
-        <item itemvalue="Ruby.foo" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test: all colors" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.files_test.rb" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test: update single home link, ignored" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test: add link, home file exists, project file exists" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_ignored (1)" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_ignored" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +341,7 @@
       <workItem from="1762022706814" duration="22000" />
       <workItem from="1762022741803" duration="59000" />
       <workItem from="1762022814381" duration="2693000" />
-      <workItem from="1762705268885" duration="4378000" />
+      <workItem from="1762705268885" duration="18902000" />
     </task>
     <task id="LOCAL-00001" summary="Add home and project functionality">
       <option name="closed" value="true" />
@@ -339,9 +383,13 @@
     <SUITE FILE_PATH="coverage/hometurf@test__status_in_projfiles.rcov" NAME="test: status in projfiles Coverage Results" MODIFIED="1761587743864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__add__link_exists_as_file.rcov" NAME="test: add, link exists as file Coverage Results" MODIFIED="1762024838950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__foreground_color.rcov" NAME="test: foreground color Coverage Results" MODIFIED="1762707265572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test_ignored__1_.rcov" NAME="test_ignored (1) Coverage Results" MODIFIED="1763228945121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@statuses_test_rb__1_.rcov" NAME="statuses_test.rb (1) Coverage Results" MODIFIED="1761400160641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
-    <SUITE FILE_PATH="coverage/hometurf@locations_test_rb.rcov" NAME="locations_test.rb Coverage Results" MODIFIED="1760475630439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
-    <SUITE FILE_PATH="coverage/hometurf@test_fixture_test_rb.rcov" NAME="test_fixture_test.rb Coverage Results" MODIFIED="1762021133671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@locations_test_rb.rcov" NAME="locations_test.rb Coverage Results" MODIFIED="1763227884250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@home_files_test_rb.rcov" NAME="home_files_test.rb Coverage Results" MODIFIED="1763228007488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test_ignored.rcov" NAME="test_ignored Coverage Results" MODIFIED="1763228500746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test_ignored_.rcov" NAME="test_ignored? Coverage Results" MODIFIED="1763228174456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test_fixture_test_rb.rcov" NAME="test_fixture_test.rb Coverage Results" MODIFIED="1763227919318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__convert_home_to_project__already_exists.rcov" NAME="test: convert home to project, already exists Coverage Results" MODIFIED="1761493889898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__convert_home_to_project.rcov" NAME="test: convert home to project Coverage Results" MODIFIED="1762009187839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@hometurf_test_rb.rcov" NAME="hometurf_test.rb Coverage Results" MODIFIED="1760281806059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
@@ -349,7 +397,7 @@
     <SUITE FILE_PATH="coverage/hometurf@test__status_in_homefiles.rcov" NAME="test: status in homefiles Coverage Results" MODIFIED="1761318561016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@links_test_rb.rcov" NAME="links_test.rb Coverage Results" MODIFIED="1761493164828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@foo.rcov" NAME="foo Coverage Results" MODIFIED="1762706973283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
-    <SUITE FILE_PATH="coverage/hometurf@files_test_rb.rcov" NAME="files_test.rb Coverage Results" MODIFIED="1762025067368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@files_test_rb.rcov" NAME="files_test.rb Coverage Results" MODIFIED="1763308338295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__status_in_both.rcov" NAME="test: status in both Coverage Results" MODIFIED="1761322066836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@statuses_test_rb.rcov" NAME="statuses_test.rb Coverage Results" MODIFIED="1761399580535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__status_in_home.rcov" NAME="test: status in home Coverage Results" MODIFIED="1762006908970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
@@ -357,11 +405,15 @@
     <SUITE FILE_PATH="coverage/hometurf@StatusesTest.rcov" NAME="StatusesTest Coverage Results" MODIFIED="1761399612411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__add_new_link.rcov" NAME="test: add new link Coverage Results" MODIFIED="1761403651889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__add_link__1_.rcov" NAME="test: add link (1) Coverage Results" MODIFIED="1761404319176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@ignore_file_test_rb.rcov" NAME="ignore_file_test.rb Coverage Results" MODIFIED="1763228372657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test__add_link__home_file_exists__project_file_exists.rcov" NAME="test: add link, home file exists, project file exists Coverage Results" MODIFIED="1763230119595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test_foobar.rcov" NAME="test_foobar Coverage Results" MODIFIED="1762025494550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__convert_home_to_project__1_.rcov" NAME="test: convert home to project (1) Coverage Results" MODIFIED="1761494134162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@color_string_trial.rcov" NAME="color_string_trial Coverage Results" MODIFIED="1762707147679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__status.rcov" NAME="test: status Coverage Results" MODIFIED="1761317694352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test__update_single_home_link__ignored.rcov" NAME="test: update single home link, ignored Coverage Results" MODIFIED="1763307601950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__links.rcov" NAME="test: links Coverage Results" MODIFIED="1762006928290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
+    <SUITE FILE_PATH="coverage/hometurf@test_nothing.rcov" NAME="test_nothing Coverage Results" MODIFIED="1763228003982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@hometurf_test_rb__1_.rcov" NAME="hometurf_test.rb (1) Coverage Results" MODIFIED="1760475805848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__add__link_exists.rcov" NAME="test: add, link exists Coverage Results" MODIFIED="1762025129130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />
     <SUITE FILE_PATH="coverage/hometurf@test__all_colors.rcov" NAME="test: all colors Coverage Results" MODIFIED="1762705905115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="hometurf" />

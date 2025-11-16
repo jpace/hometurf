@@ -25,36 +25,38 @@ module Hometurf
       link = @directory + linkname
       TestFileUtils.create_link link, to
     end
+
+    def file file
+      @directory + file
+    end
   end
 
   class TestFixture
     include Println
 
-    attr_reader :home, :project, :elsewhere
+    attr_reader :home, :away, :elsewhere
 
-    def initialize
-      @test_dir = Pathname.new "/tmp/ht-test"
-      @test_dir.mkpath unless @test_dir.exist?
+    def initialize test_dir
+      raise "invalid test dir #{test_dir}" unless test_dir.start_with? "/tmp/ht-test-"
+      @test_dir = Pathname.new test_dir
+      @test_dir.rmtree if @test_dir.exist?
+      @test_dir.mkpath
 
-      project_dir = @test_dir + "proj"
-      project_dir.rmtree if project_dir.exist?
-      project_dir.mkpath
+      @home = create_test_dir "home"
+      @away = create_test_dir "away"
+      @elsewhere = create_test_dir "elsewhere"
 
-      @home = create_test_dir "proj/home"
-      @project = create_test_dir "proj/homefiles"
-      @elsewhere = create_test_dir "proj/elsewhere"
+      @home.create_file ".a"
 
-      @home.create_file ".a-not-linked"
-
-      b = @project.create_file ".b-linked"
+      b = @away.create_file ".b"
       @home.create_link b
-      c = @elsewhere.create_file ".c-linked"
+      c = @elsewhere.create_file ".c"
       @home.create_link c
 
-      @project.create_file ".d-not-linked"
-      @project.create_file "dot.e-not-linked"
+      @away.create_file ".d"
+      @away.create_file "dot.e"
 
-      f_dir = @project.create_dir ".f-linked"
+      f_dir = @away.create_dir ".f"
       TestFileUtils.create_file f_dir, "g-file"
       @home.create_link f_dir
 
@@ -65,17 +67,19 @@ module Hometurf
       i_dir = @home.create_dir ".i"
       TestFileUtils.create_file i_dir, "i-file"
 
-      j_dir = @project.create_dir ".j-not-linked"
+      j_dir = @away.create_dir ".j"
       TestFileUtils.create_file j_dir, "j-file"
 
-      o_file = @project.create_file "dot.o"
+      o_file = @away.create_file "dot.o"
       @home.create_link o_file, ".o-linked"
 
-      @project.create_dir ".git"
+      @away.create_dir ".git"
+      @away.create_dir ".idea"
+      @away.create_dir "synced"
     end
 
     def locations
-      Locations.new(files: @project.directory, home: @home.directory)
+      Locations.new(files: @away.directory, home: @home.directory)
     end
 
     def create_test_dir name
