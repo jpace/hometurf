@@ -2,6 +2,7 @@ require 'hometurf/home_files'
 require 'hometurf/away_files'
 require 'hometurf/locations'
 require 'hometurf/utils/println'
+require 'hometurf/io/filepair'
 require 'fileutils'
 
 module Hometurf
@@ -15,26 +16,24 @@ module Hometurf
       @away = AwayFiles.new locations.files
     end
 
-    def copy_to_project fd, dest
-      executor = Executor.new
-      executor.copy fd, dest, abort_on_exists: true
+    def copy_to_project homefile, projfile
+      println "copying #{homefile} to #{projfile}"
+      if projfile.exist?
+        raise "destination exists: #{projfile}"
+      end
+      files = FilePair.new homefile, projfile
+      files.copy_x_to_y
     end
 
     def add_link projfile
       @home.add_link projfile
     end
 
-    def backup homefile
-      timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-      backup_file = homefile.parent + "#{homefile.basename}-ht-#{timestamp}"
-      executor = Executor.new
-      executor.copy homefile, backup_file, abort_on_exists: true
-    end
-
     def move_and_link homefile
-      backup homefile
       projfile = away.element homefile.basename
-      copy_to_project homefile, projfile
+      files = FilePair.new homefile, projfile
+      files.backup
+      files.copy_x_to_y
       if homefile.directory?
         homefile.rmtree
       else
@@ -69,30 +68,14 @@ module Hometurf
       other = file.sub path.to_s, ""
       println "other #{other}"
       println "syncing #{file} and #{other}"
-      if other.exist?
-        println "other exists"
-        if file.size == other.size && file.read == other.read
-          puts "identical files, skipping"
-          return
-        end
-        xtime = file.mtime
-        ytime = other.mtime
-        println "xtime #{xtime}, ytime #{ytime}"
-        if xtime > ytime
-          back_up_and_copy file, other
-        elsif xtime < ytime
-          back_up_and_copy other, file
-        end
-      else
-        executor = Executor.new
-        executor.copy file, other, abort_on_exists: false
-      end
+      filepair = FilePair.new file, other
+      filepair.sync
     end
 
     def back_up_and_copy from, to
-      backup to
-      executor = Executor.new
-      executor.copy from, to, abort_on_exists: false
+      files = FilePair.new from, to
+      files.backup
+      files.copy_x_to_y
     end
   end
 end
