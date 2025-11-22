@@ -41,6 +41,11 @@ while (arg = args.shift)
       pn = Pathname.new arg
       app.move_to_project pn
     end
+  when "sync-file"
+    while (arg = args.shift)
+      pn = Pathname.new arg
+      app.sync_file pn
+    end
   else
     $stderr.puts "unknown command: #{arg}"
   end

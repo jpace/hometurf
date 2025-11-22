@@ -75,5 +75,11 @@ module Hometurf
       files = Files.new @locations
       files.move_and_link file
     end
+
+    def sync_file file
+      puts "sync file: #{file}"
+      files = Files.new @locations
+      files.sync_file file
+    end
   end
 end

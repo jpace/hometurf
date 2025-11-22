@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'hometurf/view/color_string'
-require_relative '../../test_helper'
+require 'test_helper'
 
 module Hometurf
   class ColorsTest < Test::Unit::TestCase

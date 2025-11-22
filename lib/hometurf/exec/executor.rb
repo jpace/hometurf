@@ -14,9 +14,18 @@ class Executor
     end
   end
 
-  def copy from, to
+  def copy from, to, abort_on_exists: true
     println "copying #{from} -> #{to}"
-    raise "destination exists: #{to}" if to.exist?
+    if to.exist?
+      msg = "destination exists: #{to}"
+      if abort_on_exists
+        raise "#{msg}, aborting"
+      else
+        puts "#{msg}, overwriting"
+      end
+    else
+      to.parent.mkpath
+    end
     ::FileUtils.cp_r from, to
   end
 end

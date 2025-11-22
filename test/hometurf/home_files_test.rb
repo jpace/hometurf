@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'hometurf/files'
-require_relative '../test_helper'
-require_relative '../hometurf/test_fixture'
+require 'hometurf/fixture/test_fixture'
 
 module Hometurf
   class HomeFilesTest < Test::Unit::TestCase

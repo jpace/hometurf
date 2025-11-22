@@ -2,8 +2,8 @@
 
 require 'pathname'
 require 'singleton'
-require_relative '../../lib/hometurf/utils/println'
-require_relative 'test_files_utils'
+require 'hometurf/utils/println'
+require 'hometurf/test_files_utils'
 
 module Hometurf
   class TestFixtureDirectory
@@ -18,6 +18,9 @@ module Hometurf
     end
 
     def create_file name
+      fullname = @directory + name
+      dir = fullname.parent
+      dir.mkpath unless dir.exist?
       TestFileUtils.create_file @directory, name
     end
 
@@ -34,7 +37,7 @@ module Hometurf
   class TestFixture
     include Println
 
-    attr_reader :home, :away, :elsewhere
+    attr_reader :home, :away, :elsewhere, :windows
 
     def initialize test_dir
       raise "invalid test dir #{test_dir}" unless test_dir.start_with? "/tmp/ht-test-"
@@ -45,6 +48,7 @@ module Hometurf
       @home = create_test_dir "home"
       @away = create_test_dir "away"
       @elsewhere = create_test_dir "elsewhere"
+      @windows = create_test_dir "windows"
 
       @home.create_file ".a"
 

@@ -17,7 +17,7 @@ module Hometurf
 
     def copy_to_project fd, dest
       executor = Executor.new
-      executor.copy fd, dest
+      executor.copy fd, dest, abort_on_exists: true
     end
 
     def add_link projfile
@@ -28,7 +28,7 @@ module Hometurf
       timestamp = Time.now.strftime("%Y%m%d%H%M%S")
       backup_file = homefile.parent + "#{homefile.basename}-ht-#{timestamp}"
       executor = Executor.new
-      executor.copy homefile, backup_file
+      executor.copy homefile, backup_file, abort_on_exists: true
     end
 
     def move_and_link homefile
@@ -58,6 +58,41 @@ module Hometurf
         println "adding symlink", file
         @home.add_link file
       end
+    end
+
+    def sync_file file
+      println "file #{file}"
+      println "file.expand_path #{file.expand_path}"
+      println "@away.dir #{@away.dir}"
+      path = @away.dir + "synced"
+      println "path #{path}"
+      other = file.sub path.to_s, ""
+      println "other #{other}"
+      println "syncing #{file} and #{other}"
+      if other.exist?
+        println "other exists"
+        if file.size == other.size && file.read == other.read
+          puts "identical files, skipping"
+          return
+        end
+        xtime = file.mtime
+        ytime = other.mtime
+        println "xtime #{xtime}, ytime #{ytime}"
+        if xtime > ytime
+          back_up_and_copy file, other
+        elsif xtime < ytime
+          back_up_and_copy other, file
+        end
+      else
+        executor = Executor.new
+        executor.copy file, other, abort_on_exists: false
+      end
+    end
+
+    def back_up_and_copy from, to
+      backup to
+      executor = Executor.new
+      executor.copy from, to, abort_on_exists: false
     end
   end
 end

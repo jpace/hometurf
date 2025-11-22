@@ -2,35 +2,20 @@
 
 require 'hometurf/files'
 require 'hometurf/utils/println'
-require_relative '../test_helper'
-require_relative '../hometurf/test_fixture'
+require 'test_helper'
+require 'hometurf/fixture/fixture'
 
 module Hometurf
-  class FixtureSingleton < TestFixture
-    include Singleton
-
-    def initialize
-      super "/tmp/ht-test-files"
-    end
-  end
-
   class FilesTest < Test::Unit::TestCase
     include Println
+    include WithFixture
 
-    def fixture
-      FixtureSingleton.instance
-    end
-
-    def files_instance
-      Files.new fixture.locations
-    end
-
-    def home
-      fixture.home
-    end
-
-    def away
-      fixture.away
+    def assert_home_link expected, link
+      assert_equal expected, (home.file link).exist?, "link: #{link}"
+      assert_equal expected, (home.file link).symlink?, "link: #{link}"
+      if expected
+        assert_equal away.file(link), (home.file link).realpath
+      end
     end
 
     test "add, link does not exist" do
@@ -100,26 +85,42 @@ module Hometurf
       assert_home_link false, ".u"
     end
 
-    def create_home_files *files
-      files.each { |it| home.create_file it }
-    end
-
-    def create_away_files *files
-      files.each { |it| away.create_file it }
-    end
-
-    def assert_home_link expected, link
-      assert_equal expected, (home.file link).exist?, "link: #{link}"
-      assert_equal expected, (home.file link).symlink?, "link: #{link}"
-      if expected
-        assert_equal away.file(link), (home.file link).realpath
-      end
-    end
-
     test "update single home link, ignored" do
       files = files_instance
       files.update_home_from_project_file away.file ".idea"
       assert_home_link false, ".idea"
+    end
+    
+    test "sync file, from more recent" do
+      filename = "c/ProjectFiles/AppData/abc-xyz-config.xml"
+      syncpath = "synced/tmp/ht-test-files/windows/#{filename}"
+      fullpath = "/tmp/ht-test-files/windows/#{filename}"
+      files = files_instance
+      create_away_files syncpath
+      from = away.file(syncpath)
+      puts "from: #{from}"
+      from.open("w") { |io| io.puts "abc" }
+      dest = Pathname.new fullpath
+      puts "dest: #{dest}"
+      assert_false dest.exist?
+
+      dest.parent.mkpath
+      dest.open("w") { |io| io.puts "abc" }
+
+      files.sync_file from
+
+      assert dest.exist?
+      assert_equal from.read, dest.read
+
+      dest.open("w") { |io| io.puts "def" }
+      assert_not_equal from.read, dest.read
+      files.sync_file from
+      assert_equal from.read, dest.read
+
+      from.open("w") { |io| io.puts "ghi" }
+      assert_not_equal from.read, dest.read
+      files.sync_file from
+      assert_equal from.read, dest.read
     end
   end
 end
