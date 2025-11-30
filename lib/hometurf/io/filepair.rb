@@ -30,20 +30,18 @@ module Hometurf
     end
 
     def sync
-      # we're assuming sync from the project (y) file to the x file
+      # we're assuming sync from the project (y) file to the home (x) file
       if @y.exist?
         if identical?
           puts "identical files, skipping"
-          return
-        end
-        if x_more_recent?
+        elsif x_more_recent?
           backup_and_copy
         else
           swapped = FilePair.new @y, @x
           swapped.backup_and_copy
         end
       else
-        backup_and_copy
+        copy_x_to_y
       end
     end
 

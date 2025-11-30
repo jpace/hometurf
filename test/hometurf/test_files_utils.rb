@@ -19,7 +19,7 @@ module Hometurf
         end
       end
 
-      def create_link(from, to)
+      def create_link from, to
         unless from.exist?
           from.make_symlink to
         end

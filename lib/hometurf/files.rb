@@ -21,6 +21,7 @@ module Hometurf
       if projfile.exist?
         raise "destination exists: #{projfile}"
       end
+
       files = FilePair.new homefile, projfile
       files.copy_x_to_y
     end
@@ -30,7 +31,11 @@ module Hometurf
     end
 
     def move_and_link homefile
-      projfile = away.element homefile.basename
+      println "homefile", homefile
+      println "homefile.class", homefile.class
+      projfile = away.dir + "common" + homefile.basename.to_s
+      println "projfile", projfile
+      println "projfile.class", projfile.class
       files = FilePair.new homefile, projfile
       files.backup
       files.copy_x_to_y
@@ -43,7 +48,8 @@ module Hometurf
     end
 
     def update_home_from_project
-      @away.dir.children.sort.each do |file|
+      common = @away.dir + "common"
+      common.children.sort.each do |file|
         update_home_from_project_file file
       end
     end
@@ -60,13 +66,10 @@ module Hometurf
     end
 
     def sync_file file
-      println "file #{file}"
-      println "file.expand_path #{file.expand_path}"
-      println "@away.dir #{@away.dir}"
       path = @away.dir + "synced"
-      println "path #{path}"
+      println "path", path
       other = file.sub path.to_s, ""
-      println "other #{other}"
+      println "other", other
       println "syncing #{file} and #{other}"
       filepair = FilePair.new file, other
       filepair.sync

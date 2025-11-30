@@ -4,40 +4,13 @@ require 'pathname'
 require 'singleton'
 require 'hometurf/utils/println'
 require 'hometurf/test_files_utils'
+require 'hometurf/fixture/test_fixture_directory'
 
 module Hometurf
-  class TestFixtureDirectory
-    attr_reader :directory
-
-    def initialize directory
-      @directory = directory
-    end
-
-    def create_dir name
-      TestFileUtils.create_dir @directory, name
-    end
-
-    def create_file name
-      fullname = @directory + name
-      dir = fullname.parent
-      dir.mkpath unless dir.exist?
-      TestFileUtils.create_file @directory, name
-    end
-
-    def create_link to, linkname = to.basename
-      link = @directory + linkname
-      TestFileUtils.create_link link, to
-    end
-
-    def file file
-      @directory + file
-    end
-  end
-
   class TestFixture
     include Println
 
-    attr_reader :home, :away, :elsewhere, :windows
+    attr_reader :home, :away, :elsewhere, :windows, :awayhome, :common
 
     def initialize test_dir
       raise "invalid test dir #{test_dir}" unless test_dir.start_with? "/tmp/ht-test-"
@@ -45,41 +18,36 @@ module Hometurf
       @test_dir.rmtree if @test_dir.exist?
       @test_dir.mkpath
 
-      @home = create_test_dir "home"
-      @away = create_test_dir "away"
+      @home = create_test_dir "home-directory"
+      @away = create_test_dir "away-project"
+      @common = create_test_dir "away-project/common"
       @elsewhere = create_test_dir "elsewhere"
-      @windows = create_test_dir "windows"
+      @windows = create_test_dir "away-project/windows"
 
-      @home.create_file ".a"
+      home.create_file ".a"
+      b, _ = common.create_file ".b"
+      home.create_links b
+      c, _ = elsewhere.create_file ".c"
+      home.create_links c
 
-      b = @away.create_file ".b"
-      @home.create_link b
-      c = @elsewhere.create_file ".c"
-      @home.create_link c
+      away.create_file "common/.d"
+      away.create_file "common/dot.e"
 
-      @away.create_file ".d"
-      @away.create_file "dot.e"
-
-      f_dir = @away.create_dir ".f"
+      f_dir, _ = away.create_dir ".f"
+      home.create_links f_dir
       TestFileUtils.create_file f_dir, "g-file"
-      @home.create_link f_dir
 
-      h_dir = @elsewhere.create_dir ".h"
+      h_dir, _ = elsewhere.create_dir ".h"
+      home.create_links h_dir
       TestFileUtils.create_file h_dir, "h-file"
-      @home.create_link h_dir
 
-      i_dir = @home.create_dir ".i"
-      TestFileUtils.create_file i_dir, "i-file"
+      home.create_directory_and_files ".i", "i-file"
+      away.create_directory_and_files ".j", "j-file"
 
-      j_dir = @away.create_dir ".j"
-      TestFileUtils.create_file j_dir, "j-file"
+      o_file = away.create_file "common/dot.o"
+      home.create_link o_file, ".o-linked"
 
-      o_file = @away.create_file "dot.o"
-      @home.create_link o_file, ".o-linked"
-
-      @away.create_dir ".git"
-      @away.create_dir ".idea"
-      @away.create_dir "synced"
+      %w{ .git .idea synced }.each { |it| @away.create_dir it }
     end
 
     def locations

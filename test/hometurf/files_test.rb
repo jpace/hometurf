@@ -14,12 +14,12 @@ module Hometurf
       assert_equal expected, (home.file link).exist?, "link: #{link}"
       assert_equal expected, (home.file link).symlink?, "link: #{link}"
       if expected
-        assert_equal away.file(link), (home.file link).realpath
+        assert_equal away.file("common/#{link}"), (home.file link).realpath
       end
     end
 
     test "add, link does not exist" do
-      k_file = away.create_file ".k"
+      k_file = away.create_file "common/.k"
       files = files_instance
       files.add_link k_file
       k_link = home.file ".k"
@@ -28,12 +28,16 @@ module Hometurf
     end
 
     test "add, link exists" do
-      create_away_files ".l"
+      create_away_files "common/.l"
       ell = away.file ".l"
       home.create_link ell
-      projfile = away.file ".l"
+      projfile = away.file "common/.l"
       files = files_instance
       assert_raise(RuntimeError) { files.add_link projfile }
+      link = home.directory + ".l"
+      if link.to_s.start_with? "/tmp/ht-test-files/home"
+        link.unlink
+      end
     end
 
     test "convert home to project" do
@@ -43,30 +47,31 @@ module Hometurf
       files.move_and_link homefile
       link = home.file ".m"
       assert link.exist?
-      projfile = away.file ".m"
+      projfile = away.file "common/.m"
       assert_equal projfile, link.realpath
     end
 
     test "convert home to project, already exists" do
       home.create_file ".n"
-      away.create_file ".n"
+      away.create_file "common/.n"
       file = home.file ".n"
       files = files_instance
-      projfile = files.away.element file.basename
+      projfile = files.away.dir + file
       assert_raise(RuntimeError) { files.copy_to_project file, projfile }
     end
 
     test "add link, home file exists, project file exists" do
       create_home_files ".p"
-      create_away_files ".p"
-      projfile = away.file ".p"
+      create_away_files "common/.p"
+      projfile = away.file "common/.p"
       files = files_instance
       assert_raise(RuntimeError) { files.add_link projfile }
     end
 
     test "update home from project" do
       names = %w{ .r .s }
-      create_away_files(*names)
+      away_names = names.map { |it| "common/#{it}" }
+      create_away_files(*away_names)
       names.each { |it| assert_home_link false, it }
       files = files_instance
       files.update_home_from_project
@@ -77,10 +82,11 @@ module Hometurf
 
     test "update single home link" do
       names = %w{ .t .u }
-      create_away_files(*names)
+      away_names = names.map { |it| "common/#{it}" }
+      create_away_files(*away_names)
       names.each { |it| assert_home_link false, it }
       files = files_instance
-      files.update_home_from_project_file away.file ".t"
+      files.update_home_from_project_file away.file "common/.t"
       assert_home_link true, ".t"
       assert_home_link false, ".u"
     end

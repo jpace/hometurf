@@ -12,5 +12,10 @@ module Hometurf
     def elements
       @elements ||= dir.children
     end
+
+    def common
+      common_dir = dir + "common"
+      common_dir.children.select { |it| it.basename.to_s.start_with?('.') }
+    end
   end
 end

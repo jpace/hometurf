@@ -67,7 +67,8 @@ module Hometurf
     def copy_to_project file
       puts "copy to project: #{file}"
       files = Files.new @locations
-      files.copy_to_project file, files.away.element(file.basename)
+      projfile = files.away.dir + "common" + file.basename
+      files.copy_to_project file, projfile
     end
 
     def move_to_project file

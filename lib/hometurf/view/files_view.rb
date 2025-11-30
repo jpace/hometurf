@@ -32,7 +32,7 @@ module Hometurf
     end
 
     def print_project_files
-      @files.away.elements.sort.each do |projfile|
+      @files.away.common.sort.each do |projfile|
         next if @files.away.ignored? projfile
         next if @files.home.elements.detect { |x| x.link&.realpath == projfile }
         print_project_not_linked projfile

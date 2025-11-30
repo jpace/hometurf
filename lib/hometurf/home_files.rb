@@ -22,6 +22,9 @@ module Hometurf
     end
 
     def add_link projfile, link = nil
+      println "add link"
+      println "projfile", projfile
+      println "link", link
       link ||= element(projfile.basename)
       executor = Executor.new
       executor.make_link link, projfile

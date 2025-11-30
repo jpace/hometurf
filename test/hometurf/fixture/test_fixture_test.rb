@@ -21,85 +21,98 @@ module Hometurf
       fixture = TestFixture.new "/tmp/ht-test-home"
       locations = fixture.locations
 
-      files = Hometurf::Files.new(locations)
-      homefiles = files.home.elements.sort_by(&:file)
+      files = Hometurf::Files.new locations
+      home_elements = files.home.elements
 
-      a = homefiles[0]
-      assert_equal fixture.home.directory + ".a", a.file
+      homedir = fixture.home.directory
+      elsedir = fixture.elsewhere.directory
+      awaydir = fixture.away.directory
+
+      assert_equal 7, home_elements.size
+
+      a = get_element home_elements, homedir + ".a"
+      assert_equal homedir + ".a", a.file
       assert_nil a.link
 
-      b = homefiles[1]
-      assert_equal fixture.home.directory + ".b", b.file
+      b = get_element home_elements, homedir + ".b"
+      assert_equal homedir + ".b", b.file
       assert_not_nil b.link
 
-      c = homefiles[2]
-      assert_equal fixture.home.directory + ".c", c.file
-      assert_equal fixture.elsewhere.directory + ".c", c.link
+      c = get_element home_elements, homedir + ".c"
+      assert_equal homedir + ".c", c.file
+      assert_equal elsedir + ".c", c.link
 
-      f = homefiles[3]
-      assert_equal fixture.home.directory + ".f", f.file
+      f = get_element home_elements, homedir + ".f"
+      assert_equal homedir + ".f", f.file
       assert_not_nil f.link
-      assert_equal fixture.away.directory + ".f", f.link
+      assert_equal awaydir + ".f", f.link
 
-      h = homefiles[4]
-      assert_equal fixture.home.directory + ".h", h.file
+      h = get_element home_elements, homedir + ".h"
+      assert_equal homedir + ".h", h.file
       assert_not_nil h.link
-      assert_equal fixture.elsewhere.directory + ".h", h.link
+      assert_equal elsedir + ".h", h.link
 
-      i = homefiles[5]
-      assert_equal fixture.home.directory + ".i", i.file
+      i = get_element home_elements, homedir + ".i"
+      assert_equal homedir + ".i", i.file
       assert_nil i.link
+    end
+
+    def get_element home_elements, name
+      home_elements.detect { |x| x.file == name }
+    end
+
+    def assert_no_link homefiles, name
+      assert_nil homefiles.find { |x| x.link == name }
+    end
+
+    def assert_link homefiles, name
+      link = homefiles.find { |x| x.link == name }
+      assert link
+      link
     end
 
     test "status in projfiles" do
       fixture = TestFixture.new "/tmp/ht-test-projfiles"
-      locations = fixture.locations
-      files = Hometurf::Files.new locations
-      projfiles = files.away.elements.sort
+      files = Hometurf::Files.new fixture.locations
       homefiles = files.home.elements.sort_by(&:file)
+      projdir = files.away.dir
 
-      index = 0
+      x = projdir + "common/.b"
+      assert_equal fixture.away.directory + "common/.b", x
+      link = assert_link homefiles, x
+      assert_equal fixture.home.directory + ".b", link&.file
 
-      b = projfiles[index]
-      assert_equal fixture.away.directory + ".b", b
-      bh = homefiles.find { |x| x.link == b }
-      assert bh
-      assert_equal fixture.home.directory + ".b", bh&.file
-      index += 1
+      x = projdir + ".d"
+      assert_equal fixture.away.directory + ".d", x
+      assert_no_link homefiles, x
 
-      d = projfiles[index]
-      assert d.file?
-      assert_equal fixture.away.directory + ".d", d
-      assert_nil homefiles.find { |x| x.link == d }
-      index += 1
+      x = projdir + ".f"
+      assert_equal fixture.away.directory + ".f", x
+      assert_link homefiles, x
 
-      f = projfiles[index]
-      assert_equal fixture.away.directory + ".f", f
-      assert homefiles.find { |x| x.link == f }
-      index += 1
+      x = projdir + ".git"
+      assert x.directory?
+      assert_equal fixture.away.directory + ".git", x
+      assert_no_link homefiles, x
 
-      git = projfiles[index]
-      assert git.directory?
-      assert_equal fixture.away.directory + ".git", git
-      assert_nil homefiles.find { |x| x.link == git }
-      index += 1
+      x = projdir + ".idea"
+      assert x.directory?
+      assert_equal fixture.away.directory + ".idea", x
+      assert_no_link homefiles, x
 
-      idea = projfiles[index]
-      assert idea.directory?
-      assert_equal fixture.away.directory + ".idea", idea
-      assert_nil homefiles.find { |x| x.link == idea }
-      index += 1
+      x = projdir + ".j"
+      assert x.directory?
+      assert_equal fixture.away.directory + ".j", x
+      assert_no_link homefiles, x
 
-      j = projfiles[index]
-      assert j.directory?
-      assert_equal fixture.away.directory + ".j", j
-      assert_nil homefiles.find { |x| x.link == j }
-      index += 1
+      x = projdir + "common"
+      assert_equal fixture.away.directory + "common", x
+      assert x.directory?
 
-      e = projfiles[index]
-      assert_equal fixture.away.directory + "dot.e", e
-      assert e.file?
-      assert_nil homefiles.find { |x| x.link == e }
+      x = projdir + "common/dot.o"
+      assert_equal fixture.away.directory + "common/dot.o", x
+      assert x.file?
+      assert_link homefiles, x
     end
   end
 end
