@@ -5,13 +5,13 @@ module Hometurf
   class Location
     attr_reader :dir
 
-    def initialize dir, ignore_patterns
+    def initialize dir, executor
       @dir = dir
-      @ignore_file = IgnoreFile.new ignore_patterns
+      @executor = executor
     end
 
     def ignored? file
-      @ignore_file.ignored? file
+      ignore_file.ignored? file
     end
 
     def element pn

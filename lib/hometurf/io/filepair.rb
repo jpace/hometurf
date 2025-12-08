@@ -5,20 +5,20 @@ module Hometurf
   class FilePair
     attr_reader :x, :y
 
-    def initialize x, y
+    def initialize x, y, executor
       @x = x
       @y = y
+      @executor = executor
     end
 
     def backup
       if @y.exist?
-        BackupFile.new(@y).write_backup
+        BackupFile.new(@y, @executor).write_backup
       end
     end
 
     def copy_x_to_y
-      executor = Executor.new
-      executor.copy @x, @y, abort_on_exists: false
+      @executor.copy @x, @y, abort_on_exists: false
     end
 
     def identical?
@@ -37,7 +37,7 @@ module Hometurf
         elsif x_more_recent?
           backup_and_copy
         else
-          swapped = FilePair.new @y, @x
+          swapped = FilePair.new @y, @x, @executor
           swapped.backup_and_copy
         end
       else

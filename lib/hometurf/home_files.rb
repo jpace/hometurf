@@ -1,7 +1,7 @@
 require 'hometurf/home_file'
 require 'hometurf/location'
 require 'hometurf/utils/println'
-require 'hometurf/exec/executor'
+require 'hometurf/exec/actual_executor'
 
 module Hometurf
   class HomeFiles < Location
@@ -13,8 +13,8 @@ module Hometurf
       .gradle .irb_history .java* .zcompdump*
     EOF
 
-    def initialize dir
-      super dir, IGNORED
+    def ignore_file
+      @ignore_file ||= IgnoreFile.new IGNORED
     end
 
     def elements
@@ -26,8 +26,7 @@ module Hometurf
       println "projfile", projfile
       println "link", link
       link ||= element(projfile.basename)
-      executor = Executor.new
-      executor.make_link link, projfile
+      @executor.make_link link, projfile
     end
 
     def ignored? homefile

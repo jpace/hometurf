@@ -5,8 +5,8 @@ module Hometurf
   class AwayFiles < Location
     IGNORED = %w( .git .idea synced )
 
-    def initialize dir
-      super dir, IGNORED
+    def ignore_file
+      @ignore_file ||= IgnoreFile.new IGNORED
     end
 
     def elements

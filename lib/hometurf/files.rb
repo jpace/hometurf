@@ -4,6 +4,7 @@ require 'hometurf/locations'
 require 'hometurf/utils/println'
 require 'hometurf/io/filepair'
 require 'fileutils'
+require 'hometurf/exec/actual_executor'
 
 module Hometurf
   class Files
@@ -11,9 +12,10 @@ module Hometurf
 
     attr_reader :home, :away
 
-    def initialize locations
-      @home = HomeFiles.new locations.home
-      @away = AwayFiles.new locations.files
+    def initialize locations, executor
+      @executor = executor
+      @home = HomeFiles.new locations.home, @executor
+      @away = AwayFiles.new locations.files, @executor
     end
 
     def copy_to_project homefile, projfile
@@ -22,7 +24,7 @@ module Hometurf
         raise "destination exists: #{projfile}"
       end
 
-      files = FilePair.new homefile, projfile
+      files = create_file_pair homefile, projfile
       files.copy_x_to_y
     end
 
@@ -36,7 +38,7 @@ module Hometurf
       projfile = away.dir + "common" + homefile.basename.to_s
       println "projfile", projfile
       println "projfile.class", projfile.class
-      files = FilePair.new homefile, projfile
+      files = create_file_pair homefile, projfile
       files.backup
       files.copy_x_to_y
       if homefile.directory?
@@ -71,14 +73,18 @@ module Hometurf
       other = file.sub path.to_s, ""
       println "other", other
       println "syncing #{file} and #{other}"
-      filepair = FilePair.new file, other
+      filepair = create_file_pair file, other
       filepair.sync
     end
 
     def back_up_and_copy from, to
-      files = FilePair.new from, to
+      files = create_file_pair from, to
       files.backup
       files.copy_x_to_y
+    end
+
+    def create_file_pair x, y
+      FilePair.new x, y, @executor
     end
   end
 end

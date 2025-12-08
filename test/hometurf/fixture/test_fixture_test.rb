@@ -4,6 +4,7 @@ require 'hometurf/files'
 require 'test_helper'
 require 'hometurf/fixture/test_fixture'
 require 'hometurf/utils/println'
+require 'hometurf/exec/actual_executor'
 
 module Hometurf
   class TestFixtureTest < Test::Unit::TestCase
@@ -12,16 +13,14 @@ module Hometurf
     test "init" do
       ENV["HOMETURF_FILES_DIRECTORY"] = "/tmp/hometurf"
       locations = Locations.new(files: Pathname.new("/tmp/home-test/proj/projfiles"), home: Pathname.new("/tmp/home-test"))
-      obj = Files.new locations
+      obj = new_files_instance locations
       assert_equal(Pathname.new("/tmp/home-test/proj/projfiles"), obj.away.dir)
       assert_equal(Pathname.new("/tmp/home-test"), obj.home.dir)
     end
 
     test "status in home" do
       fixture = TestFixture.new "/tmp/ht-test-home"
-      locations = fixture.locations
-
-      files = Hometurf::Files.new locations
+      files = new_files_instance fixture.locations
       home_elements = files.home.elements
 
       homedir = fixture.home.directory
@@ -73,7 +72,7 @@ module Hometurf
 
     test "status in projfiles" do
       fixture = TestFixture.new "/tmp/ht-test-projfiles"
-      files = Hometurf::Files.new fixture.locations
+      files = new_files_instance fixture.locations
       homefiles = files.home.elements.sort_by(&:file)
       projdir = files.away.dir
 
@@ -113,6 +112,11 @@ module Hometurf
       assert_equal fixture.away.directory + "common/dot.o", x
       assert x.file?
       assert_link homefiles, x
+    end
+
+    def new_files_instance locations
+      executor = ActualExecutor.new
+      Files.new locations, executor
     end
   end
 end

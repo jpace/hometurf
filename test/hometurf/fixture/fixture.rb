@@ -18,7 +18,8 @@ module Hometurf
     end
 
     def files_instance
-      Files.new fixture.locations
+      executor = ActualExecutor.new
+      Files.new fixture.locations, executor
     end
 
     def home

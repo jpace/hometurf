@@ -9,44 +9,57 @@ require "hometurf/app"
 puts "Project directory: #{ENV[Hometurf::Locations::PROJECT_DIR_ENVNAME]}"
 puts "Home directory: #{ENV[Hometurf::Locations::HOME_DIR_ENVNAME]}"
 
-locations = Hometurf::Locations.new
-puts "locations: #{locations}"
+module Hometurf
+  class Commands
+    COMMANDS = [:update, :update_each, :update_home, :status, :copy_to_project, :move_to_project, :sync_file]
+    NO_ARGS = [:update, :status]
 
-app = Hometurf::App.new locations
-args = ARGV.dup
-while (arg = args.shift)
-  puts "arg: #{arg}"
-  case arg
-  when "update"
-    app.update
-  when "update-each"
-    while (arg = args.shift)
-      pn = Pathname.new arg
-      app.update_file pn
+    def initialize args
+      @args = args
+      @exec = Hash.new
+      @locations = Hometurf::Locations.new
+      puts "locations: #{@locations}"
+      while (arg = @args.shift)
+        puts "arg: #{arg}"
+        case arg
+        when "--dry-run"
+          @dry_run = true
+        else
+          as_symbol = arg.gsub('-', '_').to_sym
+          raise "unknown command: #{arg}" unless COMMANDS.include? as_symbol
+          if NO_ARGS.include? as_symbol
+            @exec[as_symbol] = true
+          else
+            @exec[as_symbol] = take_all
+          end
+        end
+      end
+      puts "exec: #{@exec}"
     end
-  when "update-home"
-    while (arg = args.shift)
-      pn = Pathname.new arg
-      app.update_file pn
+
+    def process
+      puts "process"
+      app = Hometurf::App.new @locations, @dry_run
+      @exec.each do |k, v|
+        puts "executing #{k}: #{v}; #{@dry_run}"
+        meth = app.method k
+        puts "meth: #{meth}; arity: #{meth.arity}"
+        if v.kind_of? Array
+          app.send k, *v, dry_run: @dry_run
+        elsif meth.arity == 0
+          app.send k
+        else
+          app.send k, dry_run: @dry_run
+        end
+      end
+
     end
-  when "status"
-    app.status
-  when "copy-to-project"
-    while (arg = args.shift)
-      pn = Pathname.new arg
-      app.copy_to_project pn
+
+    def take_all
+      Array.new.tap { |a| a << Pathname.new(@args.shift) until @args.empty? }
     end
-  when "move-to-project"
-    while (arg = args.shift)
-      pn = Pathname.new arg
-      app.move_to_project pn
-    end
-  when "sync-file"
-    while (arg = args.shift)
-      pn = Pathname.new arg
-      app.sync_file pn
-    end
-  else
-    $stderr.puts "unknown command: #{arg}"
   end
 end
+
+commands = Hometurf::Commands.new ARGV.dup
+commands.process

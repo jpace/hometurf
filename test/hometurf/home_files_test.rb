@@ -14,7 +14,7 @@ module Hometurf
     end
 
     def test_ignored
-      obj = HomeFiles.new nil
+      obj = HomeFiles.new nil, nil
       pn = Pathname.new(File.expand_path('~/.ssh'))
       arg = HomeFile.new pn
       assert obj.ignored?(arg)
